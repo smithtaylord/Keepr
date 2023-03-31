@@ -32,6 +32,12 @@ namespace Keepr.Services
             List<Vault> vaults = _repo.GetUsersVaults(userId);
             return vaults;
         }
+        internal List<Vault> GetMyVaults(string userId)
+        {
+            _profilesService.GetProfileById(userId);
+            List<Vault> vaults = _repo.GetUsersVaults(userId);
+            return vaults;
+        }
         internal Vault EditVault(Vault vaultData)
         {
             Vault original = this.GetVaultById(vaultData.Id, vaultData.CreatorId);

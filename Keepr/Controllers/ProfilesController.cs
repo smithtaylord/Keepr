@@ -44,7 +44,7 @@ namespace Keepr.Controllers
             }
         }
         [HttpGet("{id}/vaults")]
-        public ActionResult<List<Keep>> GetUsersVaults(string id)
+        public ActionResult<List<Vault>> GetUsersVaults(string id)
         {
             try
             {
