@@ -8,5 +8,11 @@ namespace Keepr.Services
         {
             _repo = repo;
         }
+
+        internal Keep CreateKeep(Keep keepData)
+        {
+            Keep keep = _repo.CreateKeep(keepData);
+            return keep;
+        }
     }
 }

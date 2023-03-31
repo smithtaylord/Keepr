@@ -13,5 +13,24 @@ namespace Keepr.Controllers
             _auth = auth;
         }
 
+        [HttpPost]
+        [Authorize]
+
+        async public Task<ActionResult<Keep>> CreateKeep([FromBody] Keep keepData)
+        {
+            try
+            {
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                keepData.CreatorId = userInfo.Id;
+                Keep keep = _keepsService.CreateKeep(keepData);
+                keep.Creator = userInfo;
+                return Ok(keep);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

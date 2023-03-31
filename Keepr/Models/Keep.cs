@@ -8,8 +8,7 @@ namespace Keepr.Models
         public string Description { get; set; }
         public string Img { get; set; }
         public int Views { get; set; }
-
-        // kept as an int probably goes here as a "virtual", but I am not exactly sure how this differs from Views yet. 
+        public int Kept { get; set; }
         public Profile Creator { get; set; }
     }
 }
