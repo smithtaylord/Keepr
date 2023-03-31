@@ -32,5 +32,66 @@ namespace Keepr.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult<List<Keep>> GetAllKeeps()
+        {
+            try
+            {
+                List<Keep> keeps = _keepsService.GetAllKeeps();
+                return Ok(keeps);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+
+        public ActionResult<Keep> GetOneKeep(int id)
+        {
+            try
+            {
+                Keep keep = _keepsService.GetOneKeep(id);
+                return Ok(keep);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        [Authorize]
+        async public Task<ActionResult<Keep>> EditKeep(int id, [FromBody] Keep keepData)
+        {
+            try
+            {
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                Keep keep = _keepsService.EditKeep(id, keepData, userInfo.Id);
+                return Ok(keep);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        async public Task<ActionResult<string>> DeleteKeep(int id)
+        {
+            try
+            {
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                string message = _keepsService.DeleteKeep(id, userInfo.Id);
+                return Ok(message);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

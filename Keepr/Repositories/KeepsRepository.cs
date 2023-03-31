@@ -30,5 +30,58 @@ VALUES (
             keepData.Id = id;
             return keepData;
         }
+
+
+        internal List<Keep> GetAllKeeps()
+        {
+            string sql = @"
+            SELECT
+            k.*, a.*
+            FROM keeps k
+            JOIN accounts a ON k.creatorId = a.id;
+            "; List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, prof) =>
+            {
+                keep.Creator = prof;
+                return keep;
+            }).ToList();
+            return keeps;
+        }
+
+        internal Keep GetOneKeep(int id)
+        {
+            string sql = @"
+            SELECT
+            k.*, a.*
+            FROM keeps k
+            JOIN accounts a ON k.creatorId = a.id
+            WHERE k.id = @id;
+            "; Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, prof) =>
+            {
+                keep.Creator = prof;
+                return keep;
+            }, new { id }).FirstOrDefault();
+            return keep;
+        }
+        internal int EditKeep(Keep original)
+        {
+            string sql = @"
+            UPDATE keeps
+            SET
+            name = @name,
+            description = @description
+            WHERE id = @id
+            ";
+            int rows = _db.Execute(sql, original);
+            return rows;
+        }
+
+        internal void DeleteKeep(int id)
+        {
+            string sql = @"
+            DELETE FROM keeps
+            WHERE id = @id;
+            ";
+            _db.Execute(sql, new { id });
+        }
     }
 }
