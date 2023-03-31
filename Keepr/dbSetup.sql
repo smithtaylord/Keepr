@@ -59,3 +59,21 @@ VALUES (
         'https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2048&q=80',
         '63ebf351822e730e1e0b3616'
     );
+
+CREATE TABLE
+    vaultKeeps(
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        creatorId VARCHAR(255) NOT NULL,
+        vaultId INT NOT NULL,
+        keepId INT NOT NULL,
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
+        FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE,
+        FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+SELECT k.*, v.*, vk.*, c.*
+FROM vaultKeeps vk
+    JOIN keeps k ON vk.keepId = k.id
+    JOIN vaults v ON vk.vaultId = v.id
+    JOIN accounts c ON vk.creatorId = c.id
+WHERE vaultId = 9;

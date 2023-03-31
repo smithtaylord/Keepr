@@ -12,3 +12,9 @@ namespace Keepr.Models
         public Profile Creator { get; set; }
     }
 }
+
+public class KeepInVault : Keep
+{
+    public int VaultKeepId { get; set; }
+    public int VaultId { get; set; }
+}
