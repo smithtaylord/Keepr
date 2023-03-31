@@ -3,10 +3,12 @@ namespace Keepr.Services
     public class VaultsService
     {
         private readonly VaultsRepository _repo;
+        private readonly ProfliesService _profilesService;
 
-        public VaultsService(VaultsRepository repo)
+        public VaultsService(VaultsRepository repo, ProfliesService profilesService)
         {
             _repo = repo;
+            _profilesService = profilesService;
         }
 
         internal Vault CreateVault(Vault vaultData)
@@ -23,6 +25,12 @@ namespace Keepr.Services
             if (vault == null) throw new Exception($"No Vault at id: {vaultId}");
             if (vault.CreatorId != userId && vault.IsPrivate == true) throw new Exception("You cannot see this vault");
             return vault;
+        }
+        internal List<Vault> GetUsersVaults(string userId)
+        {
+            _profilesService.GetProfileById(userId);
+            List<Vault> vaults = _repo.GetUsersVaults(userId);
+            return vaults;
         }
         internal Vault EditVault(Vault vaultData)
         {
@@ -42,5 +50,6 @@ namespace Keepr.Services
             _repo.DeleteVault(id);
             return $"{vault.Name} vault has been deleted";
         }
+
     }
 }

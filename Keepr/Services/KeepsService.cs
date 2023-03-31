@@ -3,10 +3,12 @@ namespace Keepr.Services
     public class KeepsService
     {
         private readonly KeepsRepository _repo;
+        private readonly ProfliesService _profilesService;
 
-        public KeepsService(KeepsRepository repo)
+        public KeepsService(KeepsRepository repo, ProfliesService profilesService)
         {
             _repo = repo;
+            _profilesService = profilesService;
         }
 
         internal Keep CreateKeep(Keep keepData)
@@ -27,6 +29,12 @@ namespace Keepr.Services
             Keep keep = _repo.GetOneKeep(id);
             if (keep == null) throw new Exception($"No keep found with id: {id}");
             return keep;
+        }
+        internal List<Keep> GetUsersKeeps(string userId)
+        {
+            _profilesService.GetProfileById(userId);
+            List<Keep> keeps = _repo.GetUsersKeeps(userId);
+            return keeps;
         }
         internal Keep EditKeep(int keepId, Keep keepData, string userId)
         {

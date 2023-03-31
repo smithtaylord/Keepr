@@ -62,6 +62,24 @@ VALUES (
             }, new { id }).FirstOrDefault();
             return keep;
         }
+        internal List<Keep> GetUsersKeeps(string userId)
+        {
+            string sql = @"
+            SELECT
+            k.*,
+            a.*
+            FROM keeps k
+            JOIN accounts a ON k.creatorId = a.id
+            WHERE a.id = @userId;
+            "; List<Keep> keep = _db.Query<Keep, Profile, Keep>(sql, (keep, prof) =>
+            {
+                keep.Creator = prof;
+                return keep;
+
+            }, new { userId }).ToList();
+            return keep;
+
+        }
         internal int EditKeep(Keep original)
         {
             string sql = @"
@@ -83,5 +101,6 @@ VALUES (
             ";
             _db.Execute(sql, new { id });
         }
+
     }
 }

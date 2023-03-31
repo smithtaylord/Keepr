@@ -77,3 +77,9 @@ FROM vaultKeeps vk
     JOIN vaults v ON vk.vaultId = v.id
     JOIN accounts c ON vk.creatorId = c.id
 WHERE vaultId = 9;
+
+SELECT k.*
+FROM keeps k
+    JOIN accounts a ON k.creatorId = a.id
+WHERE
+    a.id = '63ebf351822e730e1e0b3616';
