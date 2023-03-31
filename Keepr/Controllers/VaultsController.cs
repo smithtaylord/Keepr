@@ -30,5 +30,55 @@ namespace Keepr.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Vault>> GetVaultById(int id)
+        {
+            try
+            {
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                Vault vault = _vaultsService.GetVaultById(id, userInfo?.Id);
+                return Ok(vault);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Vault>> EditVault([FromBody] Vault vaultData, int id)
+        {
+            try
+            {
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                vaultData.CreatorId = userInfo.Id;
+                vaultData.Id = id;
+                Vault vault = _vaultsService.EditVault(vaultData);
+                return Ok(vault);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+
+        async public Task<ActionResult<string>> DeleteVault(int id)
+        {
+            try
+            {
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                string message = _vaultsService.DeleteVault(id, userInfo.Id);
+                return (Ok(message));
+            }
+            catch (Exception e)
+            {
+                return (BadRequest(e.Message));
+            }
+        }
     }
 }
