@@ -1,6 +1,7 @@
 <template>
     <div v-if="keep.creator.picture" class="component">
-        <div class="position-relative">
+        <div @click="setKeepActive(keep.id)" class="position-relative selectable" title="open keeps details"
+            data-bs-toggle="modal" data-bs-target="#keep-details">
             <img class="keep-img rounded keeps-box-shadow" :src="keep.img" :alt="keep.name">
             <div class="position-absolute bottom-0 start-0 w-100 d-flex align-items-center">
                 <div class="d-flex justify-content-between flex-grow-1 p-2 mx-2">
@@ -36,6 +37,14 @@ export default {
     setup() {
         return {
             account: computed(() => AppState.account),
+            async setKeepActive(id) {
+                try {
+                    AppState.activeKeep = null
+                    await keepsService.getOneKeep(id)
+                } catch (error) {
+                    Pop.error(error, '[set keep active]')
+                }
+            },
 
             async deleteKeep(id) {
                 try {

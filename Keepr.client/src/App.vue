@@ -8,6 +8,9 @@
   <Modal id="create-keep">
     <CreateKeep />
   </Modal>
+  <Modal id="keep-details">
+    <KeepDetails />
+  </Modal>
 </template>
 
 <script>
@@ -15,6 +18,7 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import CreateKeep from './components/CreateKeep.vue'
+import KeepDetails from './components/KeepDetails.vue'
 
 export default {
   setup() {
@@ -22,7 +26,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, CreateKeep }
+  components: { Navbar, CreateKeep, KeepDetails }
 }
 </script>
 <style lang="scss">
