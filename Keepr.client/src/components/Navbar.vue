@@ -6,7 +6,14 @@
           <router-link class="" :to="{ name: 'Home' }">
             <p class="fw-bold fs-4 bg-info selectable px-3 py-1 home-btn ms-5 me-3 mt-3">Home</p>
           </router-link>
-          <p class="fw-bold fs-4 selectable px-3 py-1 mt-3 home-btn">Create <i class="mdi mdi-menu-down"></i></p>
+          <div class="dropdown">
+            <p class="fw-bold fs-4 selectable px-3 py-1 mt-3 home-btn" data-bs-toggle="dropdown" aria-expanded="false">
+              Create <i class="mdi mdi-menu-down"></i></p>
+            <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
+              <li class="text-center selectable border-dark border-bottom pb-1">new keep</li>
+              <li class="text-center selectable pt-1">new vault</li>
+            </ul>
+          </div>
         </div>
 
         <div class="col-4">
@@ -56,5 +63,10 @@ export default {
 
 .nav-shadow {
   box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+}
+
+.drop-border {
+  border: 1px solid #2D2D2D;
+  border-radius: 10px;
 }
 </style>
