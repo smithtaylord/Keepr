@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 .keep-img {
-    width: 300px;
+    width: 350px;
 }
 
 .profile-img {

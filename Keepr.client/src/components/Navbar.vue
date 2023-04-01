@@ -1,31 +1,29 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
-      </div>
-    </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
+  <nav class="nav bg-body-bg px-3 d-flex align-items-center justify-content-between nav-shadow">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="d-flex align-items-center col-4">
+          <router-link class="" :to="{ name: 'Home' }">
+            <p class="fw-bold fs-4 bg-info selectable px-3 py-1 home-btn ms-5 me-3 mt-3">Home</p>
           </router-link>
-        </li>
-      </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
+          <p class="fw-bold fs-4 selectable px-3 py-1 mt-3 home-btn">Create <i class="mdi mdi-menu-down"></i></p>
+        </div>
+
+        <div class="col-4">
+          <div class="d-flex justify-content-center">
+            <p class="font-mo custom-border my-2 ">
+              the<br>
+              keepr<br>
+              co.
+            </p>
+          </div>
+        </div>
+        <!-- LOGIN COMPONENT HERE -->
+        <div class="col-4 text-end d-flex align-items-center justify-content-end">
+          <Login />
+        </div>
+      </div>
+
     </div>
   </nav>
 </template>
@@ -41,24 +39,22 @@ export default {
 </script>
 
 <style scoped>
-a:hover {
-  text-decoration: none;
+.home-btn {
+  border-radius: 15px;
 }
 
-.nav-link {
-  text-transform: uppercase;
+.nav {
+  height: 90px;
 }
 
-.navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+.custom-border {
+  border: 1.66787px solid #2D2D2D;
+  border-radius: 4.76534px;
+  padding-left: .3em;
+  padding-right: 1.3em;
 }
 
-@media screen and (min-width: 768px) {
-  nav {
-    height: 64px;
-  }
+.nav-shadow {
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
 }
-
 </style>
