@@ -29,8 +29,9 @@ namespace Keepr.Services
         internal List<Vault> GetUsersVaults(string userId)
         {
             _profilesService.GetProfileById(userId);
-            List<Vault> vaults = _repo.GetUsersVaults(userId);
-            return vaults;
+            List<Vault> allVaults = _repo.GetUsersVaults(userId);
+            List<Vault> filteredVaults = allVaults.FindAll(v => v.IsPrivate == false);
+            return filteredVaults;
         }
         internal List<Vault> GetMyVaults(string userId)
         {
@@ -41,6 +42,7 @@ namespace Keepr.Services
         internal Vault EditVault(Vault vaultData)
         {
             Vault original = this.GetVaultById(vaultData.Id, vaultData.CreatorId);
+            if (original.CreatorId != vaultData.CreatorId) throw new Exception("This is your your vault to edit.");
             original.Name = vaultData.Name != null ? vaultData.Name : original.Name;
             original.IsPrivate = vaultData.IsPrivate != null ? vaultData.IsPrivate : original.IsPrivate;
             int rowsAffected = _repo.EditVault(original);

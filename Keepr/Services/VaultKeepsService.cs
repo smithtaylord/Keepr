@@ -5,14 +5,20 @@ namespace Keepr.Services
         private readonly VaultKeepsRepository _repo;
         private readonly VaultsService _vaultsService;
 
-        public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService)
+        private readonly KeepsService _keepsService;
+
+        public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService, KeepsService keepsService)
         {
             _repo = repo;
             _vaultsService = vaultsService;
+            _keepsService = keepsService;
         }
 
         internal VaultKeep CreateVaultKeep(VaultKeep vkData)
         {
+            _keepsService.GetOneKeep(vkData.KeepId);
+            Vault vault = _vaultsService.GetVaultById(vkData.VaultId, vkData.CreatorId);
+            if (vault.CreatorId != vkData.CreatorId) throw new Exception("You can't create a vault keep for someone else.");
             VaultKeep vk = _repo.CreateVaultKeep(vkData);
             return vk;
         }
