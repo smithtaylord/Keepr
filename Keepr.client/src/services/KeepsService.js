@@ -15,7 +15,12 @@ class KeepsService {
         logger.log('[all keeps]', res.data)
         AppState.allKeeps = res.data.map(k => new Keep(k))
     }
-
+    async deleteKeep(id) {
+        const res = await api.delete('api/keeps/' + id)
+        const index = AppState.allKeeps.findIndex(k => k.id == id)
+        logger.log(res.data, '[deleted keep]')
+        AppState.allKeeps.splice(index, 1)
+    }
 
 }
 
