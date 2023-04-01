@@ -17,19 +17,24 @@
                             <p class="text-start text-primary font-i">{{ keep?.description }}</p>
                         </section>
                         <section class="mb-4 px-4 d-flex align-items-center justify-content-between">
-
                             <div class="dropdown">
-                                <p class="fw-bold fs-4 selectable px-3 py-1 mt-3 home-btn" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Create <i class="mdi mdi-menu-down"></i></p>
+                                <p class="fw-bold fs-5 selectable px-3 py-1 mt-3 home-btn bg-warning text-body-bg text-shadow"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Save to Vault <i class="mdi mdi-menu-down"></i></p>
                                 <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
-                                    <li class="">new keep</li>
-                                    <li class="">new vault</li>
+                                    <div v-for="v in myVaults">
+                                        <li class="ps-3 selectable">{{ v.name }}</li>
+                                    </div>
                                 </ul>
                             </div>
-                            <div class="">
-                                <img class="prof-pic rounded-circle selectable" title="go to profile"
-                                    :src="keep?.creator.picture" :alt="keep?.creator.name">
+                            <div v-if="keep?.creatorId">
+                                <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
+                                    <div class="d-flex" data-bs-dismiss="modal">
+                                        <img class="prof-pic rounded-circle selectable" title="go to profile"
+                                            :src="keep?.creator.picture" :alt="keep?.creator.name">
+                                        <p class="fw-bold font-o fs-5 ms-3 mt-2 text-dark">{{ keep?.creator.name }}</p>
+                                    </div>
+                                </router-link>
                             </div>
                         </section>
                     </div>
@@ -66,5 +71,9 @@ export default {
     height: 50px;
     width: 50px;
     object-fit: cover;
+}
+
+.home-btn {
+    border-radius: 15px;
 }
 </style>
