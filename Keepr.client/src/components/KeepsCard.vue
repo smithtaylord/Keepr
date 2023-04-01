@@ -1,5 +1,5 @@
 <template>
-    <div class="component">
+    <div v-if="keep.creator.picture" class="component">
         <div class="position-relative">
             <img class="keep-img  rounded keeps-box-shadow" :src="keep.img" :alt="keep.name">
             <div class=" position-absolute bottom-0 start-0 w-100 d-flex align-items-center">

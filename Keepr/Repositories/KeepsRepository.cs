@@ -31,14 +31,15 @@ VALUES (
             return keepData;
         }
 
-
+        // NOTE I ADDED ORDER BY TO GET CONSISTENT DATA BACK ON FRONT END, HOPEFULLY STILL PASSES ALL TESTS
         internal List<Keep> GetAllKeeps()
         {
             string sql = @"
             SELECT
             k.*, a.*
             FROM keeps k
-            JOIN accounts a ON k.creatorId = a.id;
+            JOIN accounts a ON k.creatorId = a.id
+            ORDER BY k.id;
             "; List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, prof) =>
             {
                 keep.Creator = prof;

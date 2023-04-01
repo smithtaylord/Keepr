@@ -10,7 +10,8 @@
             <p class="fw-bold fs-4 selectable px-3 py-1 mt-3 home-btn" data-bs-toggle="dropdown" aria-expanded="false">
               Create <i class="mdi mdi-menu-down"></i></p>
             <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
-              <li class="text-center selectable border-dark border-bottom pb-1">new keep</li>
+              <li class="text-center selectable border-dark border-bottom pb-1" data-bs-toggle="modal"
+                data-bs-target="#create-keep">new keep</li>
               <li class="text-center selectable pt-1">new vault</li>
             </ul>
           </div>

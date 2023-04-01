@@ -83,3 +83,8 @@ FROM keeps k
     JOIN accounts a ON k.creatorId = a.id
 WHERE
     a.id = '63ebf351822e730e1e0b3616';
+
+SELECT k.*, a.*
+FROM keeps k
+    JOIN accounts a ON k.creatorId = a.id
+ORDER BY k.id;
