@@ -9,6 +9,11 @@ class VaultsService {
         logger.log('[get my vaults]', res.data)
         AppState.myVaults = res.data.map(v => new Vault(v))
     }
+    async getProfileVaults(id) {
+        const res = await api.get(`api/profiles/${id}/vaults`)
+        logger.log('[get profile vaults]', res.data)
+        AppState.profileVaults = res.data.map(v => new Vault(v))
+    }
 
 }
 
