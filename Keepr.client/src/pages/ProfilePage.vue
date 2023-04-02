@@ -8,8 +8,13 @@
                 </div>
                 <div class="font-up">
                     <h1 class="text-center fw-bold font-o mb-3">{{ profile.name }}</h1>
-                    <p class="text-center font-o fs-4">{{ profileVaults.length }} Vaults | {{ profileKeeps.length }} Keeps
-                    </p>
+                    <div>
+                        <p v-if="account.id == profile.id" class="text-center font-o fs-4">{{ myVaults.length }} Vaults
+                            | {{ profileKeeps.length }} Keeps</p>
+
+                        <p v-else class="text-center font-o fs-4">{{ profileVaults.length }} Vaults
+                            | {{ profileKeeps.length }} Keeps</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -17,7 +22,10 @@
             <div class="col-8 m-auto">
                 <h2 class="fw-bold font-o mb-4">Vaults</h2>
                 <div class="row">
-                    <div class="col-3" v-for="v in profileVaults">
+                    <div v-if="account.id == profile.id" class="col-3" v-for="v in myVaults">
+                        <VaultCard :vault="v" />
+                    </div>
+                    <div v-else class="col-3" v-for="v in profileVaults">
                         <VaultCard :vault="v" />
                     </div>
                 </div>
@@ -88,7 +96,9 @@ export default {
         return {
             profile: computed(() => AppState.profile),
             profileKeeps: computed(() => AppState.profileKeeps),
-            profileVaults: computed(() => AppState.profileVaults)
+            profileVaults: computed(() => AppState.profileVaults),
+            myVaults: computed(() => AppState.myVaults),
+            account: computed(() => AppState.account)
         };
     },
     components: { KeepsCard, VaultCard }

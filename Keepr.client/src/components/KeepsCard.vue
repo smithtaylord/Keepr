@@ -1,8 +1,10 @@
 <template>
     <div v-if="keep.creator.picture" class="component">
-        <div @click="setKeepActive(keep.id)" class="position-relative selectable" title="open keeps details"
-            data-bs-toggle="modal" data-bs-target="#keep-details">
-            <img class="keep-img img-fluid rounded keeps-box-shadow" :src="keep.img" :alt="keep.name">
+        <div class="position-relative">
+            <div class="selectable" @click="setKeepActive(keep.id)" title="open keeps details" data-bs-toggle="modal"
+                data-bs-target="#keep-details">
+                <img class="keep-img img-fluid rounded keeps-box-shadow" :src="keep.img" :alt="keep.name">
+            </div>
             <div class="position-absolute bottom-0 start-0 w-100 d-flex align-items-center">
                 <div class="d-flex justify-content-between flex-grow-1 p-2 mx-2">
                     <p class="fs-5 text-light text-shadow font-mo">{{ keep.name }}</p>
@@ -11,7 +13,7 @@
                 </div>
             </div>
             <div v-if="account.id == keep.creatorId" class="position-absolute top-0 end-0 move-up">
-                <p @click="deleteKeep(keep.id)" class="rounded-circle bg-danger text-light selectable delete"
+                <p @click.stop="deleteKeep(keep.id)" class="rounded-circle bg-danger text-light selectable delete"
                     title="delete keep">
                     <span class="x">&times;</span>
                 </p>
@@ -51,6 +53,7 @@ export default {
 
             async deleteKeep(id) {
                 try {
+
                     if (await Pop.confirm('Are you sure you want to remove your keep?'))
                         await keepsService.deleteKeep(id)
                 } catch (error) {
@@ -89,5 +92,4 @@ export default {
 
 .move-up {
     transform: translate(5px, -5px);
-}
-</style>
+}</style>

@@ -33,6 +33,12 @@ namespace Keepr.Services
             List<Vault> filteredVaults = allVaults.FindAll(v => v.IsPrivate == false);
             return filteredVaults;
         }
+        internal List<Vault> GetAccountVaults(string userId)
+        {
+            _profilesService.GetProfileById(userId);
+            List<Vault> allVaults = _repo.GetUsersVaults(userId);
+            return allVaults;
+        }
         internal List<Vault> GetMyVaults(string userId)
         {
             _profilesService.GetProfileById(userId);
