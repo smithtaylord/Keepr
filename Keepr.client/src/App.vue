@@ -11,6 +11,9 @@
   <Modal id="keep-details">
     <KeepDetails />
   </Modal>
+  <Modal id="edit-account">
+    <EditAccount />
+  </Modal>
 </template>
 
 <script>
@@ -19,6 +22,7 @@ import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import CreateKeep from './components/CreateKeep.vue'
 import KeepDetails from './components/KeepDetails.vue'
+import EditAccount from './components/EditAccount.vue'
 
 export default {
   setup() {
@@ -26,7 +30,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, CreateKeep, KeepDetails }
+  components: { Navbar, CreateKeep, KeepDetails, EditAccount }
 }
 </script>
 <style lang="scss">

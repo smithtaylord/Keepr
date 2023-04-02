@@ -2,7 +2,16 @@
     <div v-if="profile" class="container-fluid">
         <div class="row">
             <div class="col-8 m-auto">
-                <img class="img-fluid cover-img rounded keeps-box-shadow mt-5" :src="profile.coverImg" :alt="profile.name">
+                <div class="position-relative">
+                    <div>
+                        <img class="img-fluid cover-img rounded keeps-box-shadow mt-5" :src="profile.coverImg"
+                            :alt="profile.name">
+                    </div>
+                    <div class="position-absolute top-0 end-0 mt-5 me-4 pt-3">
+                        <i class="mdi mdi-lead-pencil selectable text-light text-shadow fs-4" title="edit account"
+                            data-bs-toggle="modal" data-bs-target="#edit-account"></i>
+                    </div>
+                </div>
                 <div class="text-center">
                     <img class="rounded-circle img-fluid profile-pic" :src="profile.picture" :alt="profile.name">
                 </div>
