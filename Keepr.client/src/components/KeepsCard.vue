@@ -57,7 +57,6 @@ export default {
 
             async deleteKeep(id) {
                 try {
-
                     if (await Pop.confirm('Are you sure you want to remove your keep?'))
                         await keepsService.deleteKeep(id)
                 } catch (error) {

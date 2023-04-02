@@ -13,8 +13,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-end px-2">
-                    <i class="mdi mdi-dots-horizontal text-dark selectable fs-3" title="edit or delete vault"></i>
+                <div class="text-end px-2 dropdown">
+                    <i class="mdi mdi-dots-horizontal text-dark selectable fs-3" title="edit or delete vault"
+                        data-bs-toggle="dropdown" aria-expanded="false"></i>
+                    <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4  p-0">
+                        <li class="text-center selectable border-dark border-bottom pb-1 pt-1" data-bs-toggle="modal"
+                            data-bs-target="#edit-vault">edit vault</li>
+                        <li @click="deleteVault" class="text-center selectable pt-1 bg-danger pb-1 rounded-bottom">
+                            delete vault</li>
+                    </ul>
+
                 </div>
                 <div class="row">
                     <div class="col-4 m-auto">
@@ -78,7 +86,18 @@ export default {
         })
         return {
             vault: computed(() => AppState.vault),
-            vaultKeeps: computed(() => AppState.vaultKeeps)
+            vaultKeeps: computed(() => AppState.vaultKeeps),
+
+            async deleteVault() {
+                try {
+                    if (await Pop.confirm('Are you sure you want to remove your vault?'))
+                        await vaultsService.deleteVault(route.params.vaultId)
+                    Pop.toast("Vault has been deleted", 'success', 'top-end', 3000)
+                    router.push({ name: "Home" })
+                } catch (error) {
+                    Pop.error(error, '[delete vault]')
+                }
+            }
         }
     }
 }

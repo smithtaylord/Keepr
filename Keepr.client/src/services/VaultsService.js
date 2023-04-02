@@ -22,6 +22,19 @@ class VaultsService {
         AppState.vault = new Vault(res.data)
     }
 
+    async createVault(formData) {
+        const res = await api.post('api/vaults', formData)
+        logger.log('[creating vault', res.data)
+        AppState.myVaults.push(new Vault(res.data))
+    }
+
+    async deleteVault(id) {
+        const res = await api.delete('api/vaults/' + id)
+        const index = AppState.myVaults.findIndex(v => v.id == id)
+        logger.log(res.data, '[deleted vault]')
+        AppState.myVaults.splice(index, 1)
+    }
+
 }
 
 export const vaultsService = new VaultsService();

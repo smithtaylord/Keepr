@@ -12,7 +12,7 @@
             <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
               <li class="text-center selectable border-dark border-bottom pb-1" data-bs-toggle="modal"
                 data-bs-target="#create-keep">new keep</li>
-              <li class="text-center selectable pt-1">new vault</li>
+              <li class="text-center selectable pt-1" data-bs-toggle="modal" data-bs-target="#create-vault">new vault</li>
             </ul>
           </div>
         </div>
