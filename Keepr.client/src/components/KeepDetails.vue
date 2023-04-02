@@ -23,7 +23,8 @@
                                     Save to Vault <i class="mdi mdi-menu-down"></i></p>
                                 <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
                                     <div v-for="v in myVaults">
-                                        <li class="ps-3 selectable">{{ v.name }}</li>
+                                        <li @click="addToVault(v.id)" class="ps-3 selectable" title="add to vault"
+                                            data-bs-dismiss="modal">{{ v.name }}</li>
                                     </div>
                                 </ul>
                             </div>
@@ -48,12 +49,28 @@
 <script>
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
+import { vaultKeepsService } from '../services/VaultKeepsService.js';
 
 export default {
     setup() {
         return {
             keep: computed(() => AppState.activeKeep),
-            myVaults: computed(() => AppState.myVaults)
+            myVaults: computed(() => AppState.myVaults),
+            async addToVault(vaultId) {
+                try {
+                    const vkData = {
+                        vaultId,
+                        keepId: AppState.activeKeep.id
+                    };
+                    logger.log('[vault keep data]', vkData)
+                    await vaultKeepsService.createVaultKeep(vkData)
+                    Pop.toast('Keep Added', 'success', 'top-end', 3000)
+                } catch (error) {
+                    Pop.error(error, '[add to vault]')
+                }
+            }
         }
     }
 }

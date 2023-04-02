@@ -1,5 +1,5 @@
 <template>
-    <div v-if="keep.creator.picture" class="component">
+    <div v-if="keep.creator?.picture" class="component">
         <div class="position-relative">
             <div class="selectable" @click="setKeepActive(keep.id)" title="open keeps details" data-bs-toggle="modal"
                 data-bs-target="#keep-details">

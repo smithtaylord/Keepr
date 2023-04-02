@@ -8,6 +8,12 @@ class VaultKeepsService {
         logger.log('[get vault keeps]', res.data)
         AppState.vaultKeeps = res.data
     }
+
+    async createVaultKeep(vkData) {
+        const res = await api.post('api/vaultkeeps', vkData)
+        logger.log('[create vault keeps]', res.data)
+        AppState.vaultKeeps.push(res.data)
+    }
 }
 
 export const vaultKeepsService = new VaultKeepsService()
