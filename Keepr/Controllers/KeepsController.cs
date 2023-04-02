@@ -48,11 +48,12 @@ namespace Keepr.Controllers
 
         [HttpGet("{id}")]
 
-        public ActionResult<Keep> GetOneKeep(int id)
+        public async Task<ActionResult<Keep>> GetOneKeep(int id)
         {
             try
             {
-                Keep keep = _keepsService.GetOneKeep(id);
+                Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+                Keep keep = _keepsService.GetOneKeep(id, userInfo?.Id);
                 return Ok(keep);
             }
             catch (Exception e)

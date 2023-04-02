@@ -10,6 +10,11 @@ CREATE TABLE
 
 ALTER TABLE accounts ADD COLUMN coverImg VARCHAR(500);
 
+ALTER TABLE accounts
+ALTER COLUMN coverImg
+SET
+    DEFAULT 'https://images.unsplash.com/photo-1457364887197-9150188c107b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80';
+
 CREATE TABLE
     keeps(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

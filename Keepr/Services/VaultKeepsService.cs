@@ -16,7 +16,7 @@ namespace Keepr.Services
 
         internal VaultKeep CreateVaultKeep(VaultKeep vkData)
         {
-            _keepsService.GetOneKeep(vkData.KeepId);
+            _keepsService.GetOneKeep(vkData.KeepId, vkData.CreatorId);
             Vault vault = _vaultsService.GetVaultById(vkData.VaultId, vkData.CreatorId);
             if (vault.CreatorId != vkData.CreatorId) throw new Exception("You can't create a vault keep for someone else.");
             VaultKeep vk = _repo.CreateVaultKeep(vkData);

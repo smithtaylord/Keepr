@@ -24,10 +24,15 @@ namespace Keepr.Services
             return keeps;
         }
 
-        internal Keep GetOneKeep(int id)
+        internal Keep GetOneKeep(int id, string userId)
         {
             Keep keep = _repo.GetOneKeep(id);
             if (keep == null) throw new Exception($"No keep found with id: {id}");
+            {
+                if (keep.CreatorId != userId)
+                    keep.Views++;
+                _repo.EditKeep(keep);
+            }
             return keep;
         }
         internal List<Keep> GetUsersKeeps(string userId)
