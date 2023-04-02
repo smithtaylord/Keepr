@@ -27,12 +27,17 @@
                         </div>
                     </div>
                 </div>
-                {{ vault }}
             </div>
         </div>
-    </div>
-    <div>
-        {{ vaultKeeps }}
+        <div class="row">
+            <div class="col-8 m-auto">
+                <section class="bricks">
+                    <div v-for="k in vaultKeeps">
+                        <KeepsCard :keep="k" />
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -89,5 +94,15 @@ export default {
 
 .keeps-count {
     border-radius: 15px;
+}
+
+.bricks {
+    columns: 200px;
+    column-gap: .5em;
+
+    &>div {
+        margin-top: 1em;
+        display: inline-block;
+    }
 }
 </style>
