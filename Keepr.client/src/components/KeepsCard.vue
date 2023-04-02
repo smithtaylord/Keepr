@@ -3,7 +3,8 @@
         <div class="position-relative">
             <div class="selectable" @click="setKeepActive(keep.id)" title="open keeps details" data-bs-toggle="modal"
                 data-bs-target="#keep-details">
-                <img class="keep-img img-fluid rounded keeps-box-shadow" :src="keep.img" :alt="keep.name">
+                <img class="keep-img img-fluid rounded keeps-box-shadow" :src="keep.img" :alt="keep.name"
+                    v-on:error="onImageError">
             </div>
             <div class="position-absolute bottom-0 start-0 w-100 d-flex align-items-center">
                 <div class="d-flex justify-content-between flex-grow-1 p-2 mx-2">
@@ -42,6 +43,9 @@ export default {
         return {
             account: computed(() => AppState.account),
             path: computed(() => route.path),
+            onImageError() {
+                event.target.src = "https://t4.ftcdn.net/jpg/02/84/64/51/360_F_284645131_hE2W3bbPxFBkk2aNqNyiTgLiraaiAuDh.jpg";
+            },
             async setKeepActive(id) {
                 try {
                     AppState.activeKeep = null
@@ -92,4 +96,5 @@ export default {
 
 .move-up {
     transform: translate(5px, -5px);
-}</style>
+}
+</style>
