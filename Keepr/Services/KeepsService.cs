@@ -27,7 +27,7 @@ namespace Keepr.Services
         internal Keep GetOneKeep(int id, string userId)
         {
             Keep keep = _repo.GetOneKeep(id);
-            if (keep == null) throw new Exception($"No keep found with id: {id}");
+            if (keep.CreatorId == null) throw new Exception($"No keep found with id: {id}");
             {
                 if (keep.CreatorId != userId)
                     keep.Views++;
@@ -54,7 +54,7 @@ namespace Keepr.Services
         }
         internal string DeleteKeep(int id, string userId)
         {
-            Keep keep = _repo.GetOneKeep(id);
+            Keep keep = this.GetOneKeep(id, userId);
             if (keep == null) throw new Exception($"No keep found with id: {id}");
             if (keep.CreatorId != userId) throw new Exception("You are not the owner of this keep! Delete is not allowed!");
             _repo.DeleteKeep(id);

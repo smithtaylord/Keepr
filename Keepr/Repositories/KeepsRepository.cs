@@ -52,8 +52,11 @@ VALUES (
         {
             string sql = @"
             SELECT
-            k.*, a.*
+            k.*,
+            COUNT(vk.id) AS kept, 
+            a.*
             FROM keeps k
+            LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
             JOIN accounts a ON k.creatorId = a.id
             WHERE k.id = @id;
             "; Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, prof) =>
