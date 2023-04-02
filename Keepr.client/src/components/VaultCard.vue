@@ -1,5 +1,5 @@
 <template>
-    <div class="component">
+    <router-link :to="{ name: 'Vault', params: { vaultId: vault.id } }">
         <div class="position-relative selectable" title="open vault page">
             <img class="img-fluid vault-img mb-3 rounded keeps-box-shadow" :src="vault.img" :alt="vault.name">
             <div class="position-absolute bottom-0 start-0 w-100">
@@ -9,8 +9,7 @@
                 </div>
             </div>
         </div>
-
-    </div>
+    </router-link>
 </template>
 
 

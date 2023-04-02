@@ -7,7 +7,7 @@
                         <img class="img-fluid cover-img rounded keeps-box-shadow mt-5" :src="profile.coverImg"
                             :alt="profile.name">
                     </div>
-                    <div class="position-absolute top-0 end-0 mt-5 me-4 pt-3">
+                    <div v-if="account.id == profile.id" class="position-absolute top-0 end-0 mt-5 me-4 pt-3">
                         <i class="mdi mdi-lead-pencil selectable text-light text-shadow fs-4" title="edit account"
                             data-bs-toggle="modal" data-bs-target="#edit-account"></i>
                     </div>
