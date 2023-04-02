@@ -12,6 +12,12 @@
                             <p class="text-light text-shadow font-q fs-5">by {{ vault.creator.name }}</p>
                         </div>
                     </div>
+                    <div class="position-absolute top-0 end-0">
+                        <div class="text-end mt-4 me-2">
+                            <i class="mdi mdi-lock text-light text-shadow fs-3"></i>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="text-end px-2 dropdown">
                     <i class="mdi mdi-dots-horizontal text-dark selectable fs-3" title="edit or delete vault"

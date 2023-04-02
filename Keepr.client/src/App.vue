@@ -8,8 +8,8 @@
   <Modal id="create-keep">
     <CreateKeep />
   </Modal>
-  <Modal id="create-vault">
-    <CreateVault />
+  <Modal id="edit-vault">
+    <EditVault />
   </Modal>
   <Modal id="keep-details">
     <KeepDetails />
