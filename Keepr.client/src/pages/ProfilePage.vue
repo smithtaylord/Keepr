@@ -7,10 +7,30 @@
                     <img class="rounded-circle img-fluid profile-pic" :src="profile.picture" :alt="profile.name">
                 </div>
                 <div class="font-up">
-                    <h1 class="text-center fw-bold font-o mb-3">NAME: {{ profile.name }}</h1>
+                    <h1 class="text-center fw-bold font-o mb-3">{{ profile.name }}</h1>
                     <p class="text-center font-o fs-4">{{ profileVaults.length }} Vaults | {{ profileKeeps.length }} Keeps
                     </p>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 m-auto">
+                <h2 class="fw-bold font-o mb-4">Vaults</h2>
+                <div class="row">
+                    <div class="col-3" v-for="v in profileVaults">
+                        <VaultCard :vault="v" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 m-auto">
+                <h2 class="fw-bold font-o my-4">Keeps</h2>
+                <section class="bricks">
+                    <div v-for="k in profileKeeps">
+                        <KeepsCard :keep="k" />
+                    </div>
+                </section>
             </div>
         </div>
     </div>
@@ -26,51 +46,52 @@ import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
 import { vaultsService } from '../services/VaultsService.js';
 import { keepsService } from '../services/KeepsService.js';
+import KeepsCard from '../components/KeepsCard.vue';
+import VaultCard from '../components/VaultCard.vue';
 
 export default {
     setup() {
-        const route = useRoute()
-        const router = useRouter()
-
+        const route = useRoute();
+        const router = useRouter();
         async function getProfile() {
             try {
-                await profilesService.getProfile(route.params.profileId)
-            } catch (error) {
-                Pop.error(error, '[get profile]')
-                router.push({ name: 'Home' })
+                await profilesService.getProfile(route.params.profileId);
+            }
+            catch (error) {
+                Pop.error(error, "[get profile]");
+                router.push({ name: "Home" });
             }
         }
-
         async function getProfileKeeps() {
             try {
-                await keepsService.getProfileKeeps(route.params.profileId)
-            } catch (error) {
-                Pop.error(error, '[get keeps]')
+                await keepsService.getProfileKeeps(route.params.profileId);
+            }
+            catch (error) {
+                Pop.error(error, "[get keeps]");
             }
         }
-
         async function getProfileVaults() {
             try {
-                await vaultsService.getProfileVaults(route.params.profileId)
-            } catch (error) {
-                Pop.error(error, '[get vaults]')
+                await vaultsService.getProfileVaults(route.params.profileId);
+            }
+            catch (error) {
+                Pop.error(error, "[get vaults]");
             }
         }
-
         watchEffect(() => {
             if (route.params.profileId) {
-                getProfile()
-                getProfileVaults()
-                getProfileKeeps()
+                getProfile();
+                getProfileVaults();
+                getProfileKeeps();
             }
-        })
-
+        });
         return {
             profile: computed(() => AppState.profile),
             profileKeeps: computed(() => AppState.profileKeeps),
             profileVaults: computed(() => AppState.profileVaults)
-        }
-    }
+        };
+    },
+    components: { KeepsCard, VaultCard }
 }
 </script>
 
@@ -93,5 +114,15 @@ export default {
 
 .font-up {
     transform: translateY(-40px);
+}
+
+.bricks {
+    columns: 200px;
+    column-gap: .5em;
+
+    &>div {
+        margin-top: 1em;
+        display: inline-block;
+    }
 }
 </style>

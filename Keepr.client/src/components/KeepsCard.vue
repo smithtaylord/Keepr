@@ -2,12 +2,12 @@
     <div v-if="keep.creator.picture" class="component">
         <div @click="setKeepActive(keep.id)" class="position-relative selectable" title="open keeps details"
             data-bs-toggle="modal" data-bs-target="#keep-details">
-            <img class="keep-img rounded keeps-box-shadow" :src="keep.img" :alt="keep.name">
+            <img class="keep-img img-fluid rounded keeps-box-shadow" :src="keep.img" :alt="keep.name">
             <div class="position-absolute bottom-0 start-0 w-100 d-flex align-items-center">
                 <div class="d-flex justify-content-between flex-grow-1 p-2 mx-2">
                     <p class="fs-5 text-light text-shadow font-mo">{{ keep.name }}</p>
-                    <img class="profile-img rounded-circle" :src="keep.creator.picture" :alt="keep.creator.name"
-                        :title="keep.creator.name">
+                    <img v-if="path == '/'" class="profile-img rounded-circle" :src="keep.creator.picture"
+                        :alt="keep.creator.name" :title="keep.creator.name">
                 </div>
             </div>
             <div v-if="account.id == keep.creatorId" class="position-absolute top-0 end-0 move-up">
@@ -26,6 +26,7 @@ import { computed } from 'vue';
 import { keepsService } from '../services/KeepsService.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
+import { useRoute } from 'vue-router';
 
 export default {
     props: {
@@ -35,8 +36,10 @@ export default {
         }
     },
     setup() {
+        const route = useRoute()
         return {
             account: computed(() => AppState.account),
+            path: computed(() => route.path),
             async setKeepActive(id) {
                 try {
                     AppState.activeKeep = null
