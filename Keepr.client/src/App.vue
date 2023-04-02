@@ -8,6 +8,9 @@
   <Modal id="create-keep">
     <CreateKeep />
   </Modal>
+  <Modal id="create-vault">
+    <CreateVault />
+  </Modal>
   <Modal id="edit-vault">
     <EditVault />
   </Modal>
@@ -27,6 +30,7 @@ import CreateKeep from './components/CreateKeep.vue'
 import KeepDetails from './components/KeepDetails.vue'
 import EditAccount from './components/EditAccount.vue'
 import CreateVault from './components/CreateVault.vue'
+import EditVault from './components/EditVault.vue'
 
 export default {
   setup() {
@@ -34,7 +38,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, CreateKeep, KeepDetails, EditAccount, CreateVault }
+  components: { Navbar, CreateKeep, KeepDetails, EditAccount, CreateVault, EditVault }
 }
 </script>
 <style lang="scss">
