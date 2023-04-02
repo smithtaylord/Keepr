@@ -17,7 +17,12 @@
                             <p class="text-start text-primary font-i">{{ keep?.description }}</p>
                         </section>
                         <section class="mb-4 px-4 d-flex align-items-center justify-content-between">
-                            <div class="dropdown">
+
+                            <div v-if="isVaultRoute">
+                                <button class="m-2" title="remove keep from vault"> <i
+                                        class="mdi mdi-cancel ms-0 me-2 fs-4"></i> Remove </button>
+                            </div>
+                            <div v-else class="dropdown">
                                 <p class="fw-bold fs-5 selectable px-3 py-1 mt-3 home-btn bg-warning text-body-bg text-shadow"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Save to Vault <i class="mdi mdi-menu-down"></i></p>
@@ -52,12 +57,15 @@ import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
 import { vaultKeepsService } from '../services/VaultKeepsService.js';
+import { useRoute } from 'vue-router';
 
 export default {
     setup() {
+        const route = useRoute()
         return {
             keep: computed(() => AppState.activeKeep),
             myVaults: computed(() => AppState.myVaults),
+            isVaultRoute: computed(() => route.path.startsWith('/vault/')),
             async addToVault(vaultId) {
                 try {
                     const vkData = {
@@ -92,5 +100,46 @@ export default {
 
 .home-btn {
     border-radius: 15px;
+}
+
+// CHANGES TO BUTTON
+button {
+    font-size: 20px;
+    color: #877A8F;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+}
+
+button:focus,
+button:hover {
+    color: #FF5977;
+}
+
+button:focus:after,
+button:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+button:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #FF5977;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
 }
 </style>
