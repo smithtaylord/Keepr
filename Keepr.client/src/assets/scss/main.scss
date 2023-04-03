@@ -38,6 +38,9 @@ select {
 }
 
 form:invalid button[type="submit"] {
+  color: #877A8F;
+  // border: 1px solid #FF5977;
+  // border-radius: 5%;
   filter: grayscale(1);
   pointer-events: none;
 }
