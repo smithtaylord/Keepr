@@ -12,7 +12,7 @@
                     <div class="underline"></div>
                 </div>
                 <div class="input-container">
-                    <input v-model="editable.img" type="text" id="vault-image-url" required maxlength="500" minlength="10">
+                    <input v-model="editable.img" type="url" id="vault-image-url" required maxlength="500" minlength="10">
                     <label for="image-url" class="label">Image URL</label>
                     <div class="underline"></div>
                 </div>
@@ -59,7 +59,13 @@ export default {
             async createVault() {
                 try {
                     const formData = editable.value
+                    logger.log(formData)
+                    if (formData.isPrivate == null) {
+                        formData.isPrivate = false
+                    }
+                    logger.log(formData)
                     await vaultsService.createVault(formData)
+                    Pop.toast('Vault Created!', 'success', 'top-end', 3000)
                     editable.value = {}
                 } catch (error) {
                     Pop.error(error, '[create vault]')

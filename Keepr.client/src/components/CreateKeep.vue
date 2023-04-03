@@ -12,7 +12,7 @@
                     <div class="underline"></div>
                 </div>
                 <div class="input-container">
-                    <input v-model="editable.img" type="text" id="keep-image-url" required maxlength="500" minlength="10">
+                    <input v-model="editable.img" type="url" id="keep-image-url" required maxlength="500" minlength="10">
                     <label for="image-url" class="label">Image URL</label>
                     <div class="underline"></div>
                 </div>
