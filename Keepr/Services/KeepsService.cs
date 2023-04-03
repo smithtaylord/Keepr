@@ -27,7 +27,7 @@ namespace Keepr.Services
         internal Keep GetOneKeep(int id, string userId)
         {
             Keep keep = _repo.GetOneKeep(id);
-            if (keep.CreatorId == null) throw new Exception($"No keep found with id: {id}");
+            if (keep == null) throw new Exception($"No keep found with id: {id}");
             {
                 if (keep.CreatorId != userId)
                     keep.Views++;

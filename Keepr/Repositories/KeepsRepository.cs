@@ -58,7 +58,8 @@ VALUES (
             FROM keeps k
             LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
             JOIN accounts a ON k.creatorId = a.id
-            WHERE k.id = @id;
+            WHERE k.id = @id
+            GROUP BY k.id;
             "; Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, prof) =>
             {
                 keep.Creator = prof;
