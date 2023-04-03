@@ -13,7 +13,7 @@
                         :alt="keep.creator.name" :title="keep.creator.name">
                 </div>
             </div>
-            <div v-if="account.id == keep.creatorId" class="position-absolute top-0 end-0 move-up">
+            <div v-if="account.id == keep.creatorId && !isVaultRoute" class="position-absolute top-0 end-0 move-up">
                 <p @click.stop="deleteKeep(keep.id)" class="rounded-circle bg-danger text-light selectable delete"
                     title="delete keep">
                     <span class="x">&times;</span>
@@ -42,6 +42,7 @@ export default {
         const route = useRoute()
         return {
             account: computed(() => AppState.account),
+            isVaultRoute: computed(() => route.path.startsWith('/vault/')),
             path: computed(() => route.path),
             onImageError() {
                 event.target.src = "https://t4.ftcdn.net/jpg/02/84/64/51/360_F_284645131_hE2W3bbPxFBkk2aNqNyiTgLiraaiAuDh.jpg";

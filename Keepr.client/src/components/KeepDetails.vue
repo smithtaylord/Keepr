@@ -28,8 +28,9 @@
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Save to Vault <i class="mdi mdi-menu-down"></i></p>
                                 <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
-                                    <div v-for="v in myVaults">
-                                        <li @click="addToVault(v.id)" class="ps-3 selectable" title="add to vault"
+                                    <li v-if="myVaults.length == 0" class="ps-3 bg-primary fs-6">No Vaults Found</li>
+                                    <div v-else v-for="v in myVaults">
+                                        <li @click="addToVault(v.id)" class="px-2 py-1 selectable" title="add to vault"
                                             data-bs-dismiss="modal">{{ v.name }}</li>
                                     </div>
                                 </ul>
