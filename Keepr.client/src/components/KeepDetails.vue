@@ -4,7 +4,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-6 p-0">
-                        <img class="keep-img img-fluid rounded-start " :src="keep?.img" :alt="keep?.name">
+                        <img class="keep-img img-fluid rounded-start " :src="keep?.img" :alt="keep?.name"
+                            v-on:error="onImageError">
                     </div>
                     <div class="col-6 bg-body-bg rounded-end d-flex flex-column justify-content-between">
                         <section class="d-flex justify-content-center mt-4 font-s text-primary">
@@ -70,6 +71,9 @@ export default {
             keep: computed(() => AppState.activeKeep),
             myVaults: computed(() => AppState.myVaults),
             isVaultRoute: computed(() => route.path.startsWith('/vault/')),
+            onImageError() {
+                event.target.src = "https://t4.ftcdn.net/jpg/02/84/64/51/360_F_284645131_hE2W3bbPxFBkk2aNqNyiTgLiraaiAuDh.jpg";
+            },
             async addToVault(vaultId) {
                 try {
                     const vkData = {

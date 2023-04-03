@@ -1,13 +1,15 @@
 <template>
-  <nav class="nav bg-body-bg px-3 d-flex align-items-center justify-content-between nav-shadow">
+  <nav class=" bg-body-bg px-md-3 d-flex align-items-center justify-content-between nav-shadow">
     <div class="container-fluid">
       <div class="row">
-        <div class="d-flex align-items-center col-4">
+        <div class="d-flex align-items-center col-4 order-md-1 order-2">
           <router-link class="" :to="{ name: 'Home' }">
-            <p class="fw-bold fs-4 bg-info selectable px-3 py-1 home-btn ms-5 me-3 mt-3">Home</p>
+            <p class="fw-bold fs-4 bg-info selectable px-2 px-md-3 py-1 home-btn ms-md-5 me-3 mt-3 d-none d-md-block">Home
+            </p>
           </router-link>
           <div v-if="account.id" class="dropdown">
-            <p class="fw-bold fs-4 selectable px-3 py-1 mt-3 home-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            <p class="fw-bold fs-4 selectable px-1 px-md-3 py-1 mt-3 home-btn ms-1" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Create <i class="mdi mdi-menu-down"></i></p>
             <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
               <li class="text-center selectable border-dark border-bottom pb-1" data-bs-toggle="modal"
@@ -17,17 +19,19 @@
           </div>
         </div>
 
-        <div class="col-4">
-          <div class="d-flex justify-content-center">
-            <p class="font-mo custom-border my-2 ">
-              the<br>
-              keepr<br>
-              co.
-            </p>
+        <div class="col-4 order-md-2 order-1">
+          <div class="d-flex justify-content-center mt-1 mt-md-0">
+            <router-link class="" :to="{ name: 'Home' }">
+              <p class="font-mo text-dark custom-border my-2 ">
+                the<br>
+                keepr<br>
+                co.
+              </p>
+            </router-link>
           </div>
         </div>
         <!-- LOGIN COMPONENT HERE -->
-        <div class="col-4 text-end d-flex align-items-center justify-content-end">
+        <div class="col-4 text-end d-flex align-items-center justify-content-end order-md-3 order-3">
           <Login />
         </div>
       </div>

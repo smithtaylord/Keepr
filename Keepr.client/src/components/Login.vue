@@ -10,7 +10,8 @@
             <img :src="account.picture || user.picture" alt="account photo" height="64" class="rounded-circle" />
           </div>
         </div>
-        <div class="dropdown-menu dropdown-menu-lg-left p-0 bg-secondary" aria-labelledby="authDropdown">
+        <div v-if="account.id" class="dropdown-menu dropdown-menu-lg-left p-0 bg-secondary"
+          aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link :to="{ name: 'Profile', params: { profileId: account?.id } }">
               <div class="list-group-item dropdown-item list-group-item-action bg-secondary fw-bold font-o fs-5">
