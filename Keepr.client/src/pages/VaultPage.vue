@@ -12,14 +12,14 @@
                             <p class="text-light text-shadow font-q fs-5">by {{ vault.creator.name }}</p>
                         </div>
                     </div>
-                    <div class="position-absolute top-0 end-0">
+                    <div v-if="vault.isPrivate" class="position-absolute top-0 end-0">
                         <div class="text-end mt-4 me-2">
                             <i class="mdi mdi-lock text-light text-shadow fs-3"></i>
                         </div>
 
                     </div>
                 </div>
-                <div class="text-end px-2 dropdown">
+                <div v-if="vault.creatorId == account.id" class="text-end px-2 dropdown">
                     <!-- removed aria-expanded="false" -->
                     <i class="mdi mdi-dots-horizontal text-dark selectable fs-3" title="edit or delete vault"
                         data-bs-toggle="dropdown"></i>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6 col-md-4 m-auto">
-                        <div class="text-center">
+                        <div class="text-center mt-3">
                             <p v-if="vaultKeeps.length == 1" class="keeps-count bg-secondary font-o fs-4 fw-bold p-1">{{
                                 vaultKeeps.length }} Keep</p>
                             <p v-else class="keeps-count bg-secondary font-o fs-4 fw-bold p-1">{{ vaultKeeps.length }} Keeps
@@ -94,6 +94,7 @@ export default {
         return {
             vault: computed(() => AppState.vault),
             vaultKeeps: computed(() => AppState.vaultKeeps),
+            account: computed(() => AppState.account),
 
             async deleteVault() {
                 try {
