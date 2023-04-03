@@ -17,23 +17,24 @@
                             <p class="text-start text-primary font-i">{{ keep?.description }}</p>
                         </section>
                         <section class="mb-4 px-4 d-flex align-items-center justify-content-between">
-
-                            <div v-if="isVaultRoute">
-                                <button @click="removeFromVault()" class="m-2" title="remove keep from vault"
-                                    data-bs-dismiss="modal"> <i class="mdi mdi-cancel ms-0 me-2 fs-4"></i> Remove
-                                </button>
-                            </div>
-                            <div v-else class="dropdown">
-                                <p class="fw-bold fs-5 selectable px-3 py-1 mt-3 home-btn bg-warning text-body-bg text-shadow"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Save to Vault <i class="mdi mdi-menu-down"></i></p>
-                                <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
-                                    <li v-if="myVaults.length == 0" class="ps-3 bg-primary fs-6">No Vaults Found</li>
-                                    <div v-else v-for="v in myVaults">
-                                        <li @click="addToVault(v.id)" class="px-2 py-1 selectable" title="add to vault"
-                                            data-bs-dismiss="modal">{{ v.name }}</li>
-                                    </div>
-                                </ul>
+                            <div v-if="account.id">
+                                <div v-if="isVaultRoute">
+                                    <button @click="removeFromVault()" class="m-2" title="remove keep from vault"
+                                        data-bs-dismiss="modal"> <i class="mdi mdi-cancel ms-0 me-2 fs-4"></i> Remove
+                                    </button>
+                                </div>
+                                <div v-else class="dropdown">
+                                    <p class="fw-bold fs-5 selectable px-3 py-1 mt-3 home-btn bg-warning text-body-bg text-shadow"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Save to Vault <i class="mdi mdi-menu-down"></i></p>
+                                    <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
+                                        <li v-if="myVaults.length == 0" class="ps-3 bg-primary fs-6">No Vaults Found</li>
+                                        <div v-else v-for="v in myVaults">
+                                            <li @click="addToVault(v.id)" class="px-2 py-1 selectable" title="add to vault"
+                                                data-bs-dismiss="modal">{{ v.name }}</li>
+                                        </div>
+                                    </ul>
+                                </div>
                             </div>
                             <div v-if="keep?.creatorId">
                                 <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
@@ -65,6 +66,7 @@ export default {
     setup() {
         const route = useRoute()
         return {
+            account: computed(() => AppState.account),
             keep: computed(() => AppState.activeKeep),
             myVaults: computed(() => AppState.myVaults),
             isVaultRoute: computed(() => route.path.startsWith('/vault/')),

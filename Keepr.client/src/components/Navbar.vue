@@ -6,7 +6,7 @@
           <router-link class="" :to="{ name: 'Home' }">
             <p class="fw-bold fs-4 bg-info selectable px-3 py-1 home-btn ms-5 me-3 mt-3">Home</p>
           </router-link>
-          <div class="dropdown">
+          <div v-if="account.id" class="dropdown">
             <p class="fw-bold fs-4 selectable px-3 py-1 mt-3 home-btn" data-bs-toggle="dropdown" aria-expanded="false">
               Create <i class="mdi mdi-menu-down"></i></p>
             <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
@@ -37,10 +37,15 @@
 </template>
 
 <script>
+
+import { computed } from 'vue';
 import Login from './Login.vue'
+import { AppState } from '../AppState.js';
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login }
 }
