@@ -7,17 +7,20 @@
             </div>
             <form @submit.prevent="editAccount">
                 <div class="input-container">
-                    <input v-model="editable.name" type="text" id="name" required maxlength="100" minlength="2">
+                    <input v-model="editable.name" type="text" id="edit-account-name" required maxlength="100"
+                        minlength="2">
                     <label for="name" class="label">Name</label>
                     <div class="underline"></div>
                 </div>
                 <div class="input-container">
-                    <input v-model="editable.picture" type="text" id="picture" required maxlength="500" minlength="10">
+                    <input v-model="editable.picture" type="text" id="edit-account-picture" required maxlength="500"
+                        minlength="10">
                     <label for="picture" class="label">Profile Picture</label>
                     <div class="underline"></div>
                 </div>
                 <div class="input-container">
-                    <input v-model="editable.coverImg" type="text" id="coverImg" required maxlength="500" minlength="2">
+                    <input v-model="editable.coverImg" type="text" id="edit-account-coverImg" required maxlength="500"
+                        minlength="2">
                     <label for="coverImg" class="label">Cover Image</label>
                     <div class="underline"></div>
                 </div>

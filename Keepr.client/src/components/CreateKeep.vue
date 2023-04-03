@@ -7,17 +7,17 @@
             </div>
             <form @submit.prevent="createKeep">
                 <div class="input-container">
-                    <input v-model="editable.name" type="text" id="name" required maxlength="100" minlength="2">
+                    <input v-model="editable.name" type="text" id="keep-name" required maxlength="100" minlength="2">
                     <label for="name" class="label">Title</label>
                     <div class="underline"></div>
                 </div>
                 <div class="input-container">
-                    <input v-model="editable.img" type="text" id="image-url" required maxlength="500" minlength="10">
+                    <input v-model="editable.img" type="text" id="keep-image-url" required maxlength="500" minlength="10">
                     <label for="image-url" class="label">Image URL</label>
                     <div class="underline"></div>
                 </div>
                 <div class="input-container">
-                    <input v-model="editable.description" type="text" id="description" required maxlength="500"
+                    <input v-model="editable.description" type="text" id="keep-description" required maxlength="500"
                         minlength="2">
                     <label for="description" class="label">Keep Description</label>
                     <div class="underline"></div>

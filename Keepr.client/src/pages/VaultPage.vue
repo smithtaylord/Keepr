@@ -20,8 +20,9 @@
                     </div>
                 </div>
                 <div class="text-end px-2 dropdown">
+                    <!-- removed aria-expanded="false" -->
                     <i class="mdi mdi-dots-horizontal text-dark selectable fs-3" title="edit or delete vault"
-                        data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        data-bs-toggle="dropdown"></i>
                     <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4  p-0">
                         <li class="text-center selectable border-dark border-bottom pb-1 pt-1" data-bs-toggle="modal"
                             data-bs-target="#edit-vault">edit vault</li>
@@ -122,7 +123,7 @@ export default {
 }
 
 .bricks {
-    columns: 200px;
+    columns: 250px;
     column-gap: .5em;
 
     &>div {

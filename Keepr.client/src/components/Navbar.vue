@@ -8,8 +8,8 @@
             </p>
           </router-link>
           <div v-if="account.id" class="dropdown">
-            <p class="fw-bold fs-4 selectable px-1 px-md-3 py-1 mt-3 home-btn ms-1" data-bs-toggle="dropdown"
-              aria-expanded="false">
+            <!-- removed aria-expanded="false" -->
+            <p class="fw-bold fs-4 selectable px-1 px-md-3 py-1 mt-3 home-btn ms-1" data-bs-toggle="dropdown">
               Create <i class="mdi mdi-menu-down"></i></p>
             <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
               <li class="text-center selectable border-dark border-bottom pb-1" data-bs-toggle="modal"

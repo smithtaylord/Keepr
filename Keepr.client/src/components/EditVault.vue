@@ -7,7 +7,7 @@
             </div>
             <form @submit.prevent="editVault">
                 <div class="input-container">
-                    <input v-model="editable.name" type="text" id="name" required maxlength="100" minlength="2">
+                    <input v-model="editable.name" type="text" id="edit-vault-name" required maxlength="100" minlength="2">
                     <label for="name" class="label">Title</label>
                     <div class="underline"></div>
                 </div>
@@ -16,7 +16,7 @@
                         <small class="text-primary">Private Vaults can only be seen by you</small>
                         <div class="d-flex">
                             <div class="cntr mt-2">
-                                <input v-model="editable.isPrivate" type="checkbox" id="cbx" class="hidden-xs-up">
+                                <input v-model="editable.isPrivate" type="checkbox" id="cbx-2" class="hidden-xs-up">
                                 <label for="cbx" class="cbx"></label>
                             </div>
                             <p class="ms-3 mt-2 font-o fw-bold fs-5">Make Vault Private?</p>

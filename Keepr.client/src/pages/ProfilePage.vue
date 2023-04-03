@@ -136,7 +136,7 @@ export default {
 }
 
 .bricks {
-    columns: 200px;
+    columns: 250px;
     column-gap: .5em;
 
     &>div {
