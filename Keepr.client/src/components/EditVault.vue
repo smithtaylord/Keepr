@@ -17,7 +17,7 @@
                         <div class="d-flex">
                             <div class="cntr mt-2">
                                 <input v-model="editable.isPrivate" type="checkbox" id="cbx-2" class="hidden-xs-up">
-                                <label for="cbx" class="cbx"></label>
+                                <label for="cbx-2" class="cbx-2"></label>
                             </div>
                             <p class="ms-3 mt-2 font-o fw-bold fs-5">Make Vault Private?</p>
                         </div>

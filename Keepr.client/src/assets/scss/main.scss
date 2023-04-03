@@ -90,7 +90,7 @@ div {
 .input-container {
   position: relative;
   margin: 50px auto;
-  width: 400px;
+  width: 90%;
 }
 
 .input-container input[type="text"] {
@@ -222,6 +222,12 @@ div {
   border-bottom: 2px solid #fff;
   transition: all 0.3s ease;
   transition-delay: 0.15s;
+}
+
+.lbl {
+  margin-left: 5px;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 #cbx-2:checked~.cbx-2 {
