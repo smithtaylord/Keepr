@@ -7,8 +7,8 @@
                     v-on:error="onImageError">
             </div>
             <div class="position-absolute bottom-0 start-0 w-100 d-flex align-items-center">
-                <div class="d-flex justify-content-between flex-grow-1 p-2 mx-2">
-                    <p class="fs-5 text-light text-shadow font-mo">{{ keep.name }}</p>
+                <div class="d-flex justify-content-between flex-grow-1 p-md-2 mx-2">
+                    <p class="text-light text-shadow font-mo font-size">{{ keep.name }}</p>
                     <img v-if="path == '/'" class="profile-img rounded-circle" :src="keep.creator.picture"
                         :alt="keep.creator.name" :title="keep.creator.name">
                 </div>
@@ -96,5 +96,22 @@ export default {
 
 .move-up {
     transform: translate(5px, -5px);
+}
+
+.font-size {
+    font-size: 24pt;
+}
+
+@media screen and (max-width: 768px) {
+
+    .profile-img {
+        height: 30px;
+        width: 30px;
+        object-fit: cover;
+    }
+
+    .font-size {
+        font-size: 12pt;
+    }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-5 my-3 text-center">
+  <div class="mx-2 mx-md-5 my-3 text-center">
     <section class="bricks">
       <div v-for="k in keeps">
         <KeepsCard :keep="k" />
@@ -45,5 +45,19 @@ export default {
     margin-top: 1em;
     display: inline-block;
   }
+}
+
+@media screen and (max-width: 768px) {
+
+  .bricks {
+    columns: 2;
+    column-gap: .5em;
+
+    &>div {
+      margin-top: 1em;
+      display: inline-block;
+    }
+  }
+
 }
 </style>
