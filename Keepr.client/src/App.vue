@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="sticky-top d-none d-md-block">
     <Navbar />
   </header>
   <main>
@@ -20,6 +20,9 @@
   <Modal id="edit-account">
     <EditAccount />
   </Modal>
+  <header class="sticky-bottom d-md-none">
+    <Navbar />
+  </header>
 </template>
 
 <script>
