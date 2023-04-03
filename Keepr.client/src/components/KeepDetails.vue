@@ -1,21 +1,27 @@
 <template>
-    <div class="modal-dialog modal-xl ">
+    <div class="modal-dialog modal-xl modal-fullscreen-md-down">
         <div class="modal-content" id="keep-details">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-6 p-0">
-                        <img class="keep-img img-fluid rounded-start " :src="keep?.img" :alt="keep?.name"
-                            v-on:error="onImageError">
+                    <div class="col-12 col-md-6 p-0">
+                        <div class="position-relative">
+                            <img class="keep-img img-fluid rounded-start " :src="keep?.img" :alt="keep?.name"
+                                v-on:error="onImageError">
+                            <button type="button"
+                                class="text-light font-i text-shadow position-absolute top-0 end-0 pe-4 pt-2 d-md-none"
+                                data-bs-dismiss="modal" aria-label="Close">X</button>
+                        </div>
                     </div>
-                    <div class="col-6 bg-body-bg rounded-end d-flex flex-column justify-content-between">
+                    <div
+                        class="col-12 col-md-6 bg-body-bg rounded-end d-flex flex-column justify-content-between mobile-height">
                         <section class="d-flex justify-content-center mt-4 font-s text-primary">
                             <div class="me-2"> <i class="px-2 mdi mdi-eye"></i> {{ keep?.views }}</div>
                             <div class=""> <i class="px-2 mdi mdi-alpha-k-box-outline"></i>
                                 {{ keep?.kept }}</div>
                         </section>
-                        <section class="px-5">
+                        <section class="px-5 mobile-scroll">
                             <h1 class="text-center font-mo mb-3 pb-2">{{ keep?.name }}</h1>
-                            <p class="text-start text-primary font-i">{{ keep?.description }}</p>
+                            <p class="text-start text-primary font-i ">{{ keep?.description }}</p>
                         </section>
                         <section class="mb-4 px-4 d-flex align-items-center justify-content-between">
                             <div v-if="account.id">
@@ -25,7 +31,7 @@
                                     </button>
                                 </div>
                                 <div v-else class="dropdown">
-                                    <p class="fw-bold fs-5 selectable px-3 py-1 mt-3 home-btn bg-warning text-body-bg text-shadow"
+                                    <p class="fw-bold font-size selectable px-3 py-1 mt-3 home-btn bg-warning text-body-bg text-shadow"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         Save to Vault <i class="mdi mdi-menu-down"></i></p>
                                     <ul class="dropdown-menu bg-secondary fw-bold font-o fs-4 drop-border">
@@ -42,7 +48,7 @@
                                     <div class="d-flex" data-bs-dismiss="modal">
                                         <img class="prof-pic rounded-circle selectable" title="go to profile"
                                             :src="keep?.creator.picture" :alt="keep?.creator.name">
-                                        <p class="fw-bold font-o fs-5 ms-3 mt-2 text-dark">{{ keep?.creator.name }}</p>
+                                        <p class="fw-bold font-o font-size ms-3 mt-2 text-dark">{{ keep?.creator.name }}</p>
                                     </div>
                                 </router-link>
                             </div>
@@ -121,6 +127,10 @@ export default {
     border-radius: 15px;
 }
 
+.font-size {
+    font-size: 18pt;
+}
+
 // CHANGES TO BUTTON
 button {
     font-size: 20px;
@@ -160,5 +170,33 @@ button:after {
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
     transition-duration: 400ms;
     transition-property: width, left;
+}
+
+@media screen and (max-width: 768px) {
+    .keep-img {
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0 !important;
+    }
+
+    .prof-pic {
+        height: 35px;
+        width: 35px;
+        object-fit: cover;
+    }
+
+    .font-size {
+        font-size: 12pt;
+    }
+
+    .mobile-height {
+        height: 50vh;
+    }
+
+    .mobile-scroll {
+        overflow-y: auto;
+    }
+
 }
 </style>
