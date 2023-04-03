@@ -14,9 +14,12 @@
                     </div>
                     <div
                         class="col-12 col-md-6 bg-body-bg rounded-end d-flex flex-column justify-content-between mobile-height">
+                        <div class="text-end d-none d-md-block" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="mdi mdi-window-close text-dark selectable fs-2 mt-5"></i>
+                        </div>
                         <section class="d-flex justify-content-center mt-4 font-s text-primary">
-                            <div class="me-2"> <i class="px-2 mdi mdi-eye"></i> {{ keep?.views }}</div>
-                            <div class=""> <i class="px-2 mdi mdi-alpha-k-box-outline"></i>
+                            <div class="me-2 fs-4"> <i class="px-2 mdi mdi-eye"></i> {{ keep?.views }}</div>
+                            <div class="fs-4"> <i class="px-2 mdi mdi-alpha-k-box-outline"></i>
                                 {{ keep?.kept }}</div>
                         </section>
                         <section class="px-5 mobile-scroll">
@@ -133,7 +136,7 @@ export default {
 
 .scroll {
     overflow-y: auto;
-    height: 30vh;
+    max-height: 30vh;
 }
 
 // CHANGES TO BUTTON

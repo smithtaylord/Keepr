@@ -64,6 +64,7 @@ import { vaultsService } from '../services/VaultsService.js';
 import { vaultKeepsService } from '../services/VaultKeepsService.js';
 import { watchEffect, computed } from 'vue';
 import { AppState } from '../AppState.js';
+import { logger } from '../utils/Logger.js';
 
 export default {
     setup() {
@@ -98,10 +99,11 @@ export default {
 
             async deleteVault() {
                 try {
-                    if (await Pop.confirm('Are you sure you want to remove your vault?'))
+                    if (await Pop.confirm('Are you sure you want to remove your vault?')) {
                         await vaultsService.deleteVault(route.params.vaultId)
-                    Pop.toast("Vault has been deleted", 'success', 'top-end', 3000)
-                    router.push({ name: "Home" })
+                        Pop.toast("Vault has been deleted", 'success', 'top-end', 3000)
+                        router.push({ name: "Home" })
+                    }
                 } catch (error) {
                     Pop.error(error, '[delete vault]')
                 }
