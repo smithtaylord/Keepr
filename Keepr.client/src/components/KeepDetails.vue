@@ -19,8 +19,9 @@
                         <section class="mb-4 px-4 d-flex align-items-center justify-content-between">
 
                             <div v-if="isVaultRoute">
-                                <button class="m-2" title="remove keep from vault"> <i
-                                        class="mdi mdi-cancel ms-0 me-2 fs-4"></i> Remove </button>
+                                <button @click="removeFromVault()" class="m-2" title="remove keep from vault"
+                                    data-bs-dismiss="modal"> <i class="mdi mdi-cancel ms-0 me-2 fs-4"></i> Remove
+                                </button>
                             </div>
                             <div v-else class="dropdown">
                                 <p class="fw-bold fs-5 selectable px-3 py-1 mt-3 home-btn bg-warning text-body-bg text-shadow"
@@ -77,6 +78,17 @@ export default {
                     Pop.toast('Keep Added', 'success', 'top-end', 3000)
                 } catch (error) {
                     Pop.error(error, '[add to vault]')
+                }
+            },
+            async removeFromVault() {
+                try {
+                    const foundVK = AppState.vaultKeeps.find(vk => vk.id == AppState.activeKeep.id)
+                    const vkId = foundVK.vaultKeepId
+                    logger.log(vkId, '[vk id]')
+                    if (await Pop.confirm('Are you sure you want to remove your keep from this vault?'))
+                        await vaultKeepsService.removeFromVault(vkId)
+                } catch (error) {
+                    Pop.error(error, '[remove from vault]')
                 }
             }
         }
