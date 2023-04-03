@@ -1,13 +1,13 @@
 <template>
     <div v-if="vault" class="container-fluid">
         <div class="row">
-            <div class="col-4 m-auto">
+            <div class="col-12 col-md-4 m-auto">
                 <div class="position-relative">
                     <div>
                         <img class="vault-pic img-fluid rounded mt-4" :src="vault.img" :alt="vault.name">
                     </div>
                     <div class="position-absolute bottom-0 w-100">
-                        <div class="text-center pb-3">
+                        <div class="text-center pb-md-3">
                             <h1 class="text-light text-shadow font-q">{{ vault.name }}</h1>
                             <p class="text-light text-shadow font-q fs-5">by {{ vault.creator.name }}</p>
                         </div>
@@ -31,7 +31,7 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-4 m-auto">
+                    <div class="col-6 col-md-4 m-auto">
                         <div class="text-center">
                             <p v-if="vaultKeeps.length == 1" class="keeps-count bg-secondary font-o fs-4 fw-bold p-1">{{
                                 vaultKeeps.length }} Keep</p>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-8 m-auto">
+            <div class="col-12 col-md-8 m-auto">
                 <section class="bricks">
                     <div v-for="k in vaultKeeps">
                         <KeepsCard :keep="k" />
@@ -129,5 +129,25 @@ export default {
         margin-top: 1em;
         display: inline-block;
     }
+}
+
+@media screen and (max-width: 768px) {
+
+    .bricks {
+        columns: 2;
+        column-gap: .5em;
+
+        &>div {
+            margin-top: 1em;
+            display: inline-block;
+        }
+    }
+
+    .vault-pic {
+        height: 150px;
+        width: 100%;
+        object-fit: cover;
+    }
+
 }
 </style>

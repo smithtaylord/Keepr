@@ -1,7 +1,7 @@
 <template>
     <div v-if="profile" class="container-fluid">
         <div class="row">
-            <div class="col-8 m-auto">
+            <div class="col-12 col-md-8 m-auto">
                 <div class="position-relative">
                     <div>
                         <img class="img-fluid cover-img rounded keeps-box-shadow mt-5" :src="profile.coverImg"
@@ -28,20 +28,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-8 m-auto">
+            <div class="col-12 col-md-8 m-auto">
                 <h2 class="fw-bold font-o mb-4">Vaults</h2>
                 <div class="row">
-                    <div v-if="account.id == profile.id" class="col-3" v-for="v in myVaults">
+                    <div v-if="account.id == profile.id" class="col-6 col-md-3" v-for="v in myVaults">
                         <VaultCard :vault="v" />
                     </div>
-                    <div v-else class="col-3" v-for="v in profileVaults">
+                    <div v-else class="col-6 col-md-3" v-for="v in profileVaults">
                         <VaultCard :vault="v" />
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-8 m-auto">
+            <div class=" col-12 col-md-8 m-auto">
                 <h2 class="fw-bold font-o my-4">Keeps</h2>
                 <section class="bricks">
                     <div v-for="k in profileKeeps">
@@ -143,5 +143,34 @@ export default {
         margin-top: 1em;
         display: inline-block;
     }
+}
+
+@media screen and (max-width: 768px) {
+
+    .bricks {
+        columns: 2;
+        column-gap: .5em;
+
+        &>div {
+            margin-top: 1em;
+            display: inline-block;
+        }
+    }
+
+    .cover-img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .profile-pic {
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+        border: 1px solid #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        transform: translateY(-50px);
+    }
+
 }
 </style>
