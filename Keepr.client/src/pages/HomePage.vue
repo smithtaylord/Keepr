@@ -1,6 +1,6 @@
 <template>
   <div class="mx-2 mx-md-5 my-3 text-center">
-    <section class="bricks">
+    <section class="bricks ">
       <div v-for="k in keeps">
         <KeepsCard :keep="k" />
       </div>
